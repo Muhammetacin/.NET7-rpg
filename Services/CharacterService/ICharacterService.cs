@@ -7,8 +7,8 @@ namespace Services.CharacterService
 {
     public interface ICharacterService
     {
-        List<Character> GetAllCharacters();
-        Character GetCharacter(int id);
-        List<Character> AddNewCharacter(Character newCharacter);
+        Task<List<Character>> GetAllCharacters();
+        Task<Character> GetCharacter(int id);
+        Task<List<Character>> AddNewCharacter(Character newCharacter);
     }
 }

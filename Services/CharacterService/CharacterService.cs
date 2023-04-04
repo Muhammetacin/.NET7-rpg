@@ -11,22 +11,23 @@ namespace Services.CharacterService
         {
             new Character(),
             new Character {
+                Id = 1,
                 Name = "Sam"
             }
         };
 
-        public List<Character> AddNewCharacter(Character newCharacter)
+        public async Task<List<Character>> AddNewCharacter(Character newCharacter)
         {
             characters.Add(newCharacter);
             return characters;
         }
 
-        public List<Character> GetAllCharacters()
+        public async Task<List<Character>> GetAllCharacters()
         {
             return characters;
         }
 
-        public Character GetCharacter(int id)
+        public async Task<Character> GetCharacter(int id)
         {
             var character = characters.FirstOrDefault(c => c.Id == id);
             
