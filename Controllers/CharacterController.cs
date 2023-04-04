@@ -26,7 +26,7 @@ namespace Controllers
         [HttpGet("{id}")]
         public ActionResult<Character> GetSingle(int id)
         {
-            return Ok(characters[id - 1]);
+            return Ok(characters.FirstOrDefault(c => c.Id == id));
         }
     }
 }
