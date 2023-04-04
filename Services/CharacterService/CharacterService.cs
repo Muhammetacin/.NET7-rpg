@@ -28,7 +28,13 @@ namespace Services.CharacterService
 
         public Character GetCharacter(int id)
         {
-            return characters.FirstOrDefault(c => c.Id == id);
+            var character = characters.FirstOrDefault(c => c.Id == id);
+            
+            if(character != null) {
+                return character;
+            }
+
+            throw new Exception("Character not found");
         }
     }
 }
