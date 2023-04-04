@@ -16,26 +16,28 @@ namespace Services.CharacterService
             }
         };
 
-        public async Task<List<Character>> AddNewCharacter(Character newCharacter)
+        public async Task<ServiceResponse<List<Character>>> AddNewCharacter(Character newCharacter)
         {
+            var serviceResponse = new ServiceResponse<List<Character>>();
             characters.Add(newCharacter);
-            return characters;
+            serviceResponse.Data = characters;
+            return serviceResponse;
         }
 
-        public async Task<List<Character>> GetAllCharacters()
+        public async Task<ServiceResponse<List<Character>>> GetAllCharacters()
         {
-            return characters;
+            var serviceResponse = new ServiceResponse<List<Character>>();
+            serviceResponse.Data = characters;
+            return serviceResponse;
         }
 
-        public async Task<Character> GetCharacter(int id)
+        public async Task<ServiceResponse<Character>> GetCharacter(int id)
         {
+            var serviceResponse = new ServiceResponse<Character>();
             var character = characters.FirstOrDefault(c => c.Id == id);
+            serviceResponse.Data = character;
             
-            if(character != null) {
-                return character;
-            }
-
-            throw new Exception("Character not found");
+            return serviceResponse;
         }
     }
 }
