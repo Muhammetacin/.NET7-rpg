@@ -1,5 +1,6 @@
 global using Models;
 global using Services.CharacterService;
+global using DTOs.Character;
 
 var builder = WebApplication.CreateBuilder(args);
 
