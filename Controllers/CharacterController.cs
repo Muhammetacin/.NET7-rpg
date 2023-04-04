@@ -10,11 +10,23 @@ namespace Controllers
     [Route("api/[controller]")]
     public class CharacterController : ControllerBase
     {
-        public static Character knight = new Character();
+        public static List<Character> characters = new List<Character> {
+            new Character(),
+            new Character {
+                Name = "Sam"
+            }
+        };
 
-        [HttpGet]
-        public ActionResult<Character> Get() {
-            return Ok(knight);
+        [HttpGet("GetAll")]
+        public ActionResult<List<Character>> Get()
+        {
+            return Ok(characters);
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<Character> GetSingle(int id)
+        {
+            return Ok(characters[id - 1]);
         }
     }
 }
