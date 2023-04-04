@@ -10,7 +10,8 @@ namespace Controllers
     [Route("api/[controller]")]
     public class CharacterController : ControllerBase
     {
-        public static List<Character> characters = new List<Character> {
+        public static List<Character> characters = new List<Character> 
+        {
             new Character(),
             new Character {
                 Name = "Sam"
@@ -27,6 +28,13 @@ namespace Controllers
         public ActionResult<Character> GetSingle(int id)
         {
             return Ok(characters.FirstOrDefault(c => c.Id == id));
+        }
+
+        [HttpPost]
+        public ActionResult<List<Character>> AddCharacter(Character newCharacter)
+        {    
+            characters.Add(newCharacter);
+            return Ok(characters);
         }
     }
 }
