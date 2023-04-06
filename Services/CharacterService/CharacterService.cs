@@ -56,7 +56,7 @@ namespace Services.CharacterService
             {
                 var character = characters.FirstOrDefault(c => c.Id == updatedCharacter.Id);
 
-                if(character == null) {
+                if(character is null) {
                     throw new Exception($"Character with Id '{updatedCharacter.Id}' not found.");
                 }
 
@@ -73,6 +73,30 @@ namespace Services.CharacterService
 
                 serviceResponse.Data = _mapper.Map<GetCharacterResponseDTO>(character);
             } 
+            catch(Exception ex) 
+            {
+                serviceResponse.IsSuccessful = false;
+                serviceResponse.Message = ex.Message;
+            }
+
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<List<GetCharacterResponseDTO>>> DeleteCharacter(int id)
+        {
+            var serviceResponse = new ServiceResponse<List<GetCharacterResponseDTO>>();
+
+            try 
+            {
+                var character = characters.First(c => c.Id == id);
+
+                if(character is null) {
+                    throw new Exception($"Character with Id '{id}' not found.");
+                }
+
+                characters.Remove(character);
+                serviceResponse.Data = characters.Select(c => _mapper.Map<GetCharacterResponseDTO>(c)).ToList();
+            }
             catch(Exception ex) 
             {
                 serviceResponse.IsSuccessful = false;
