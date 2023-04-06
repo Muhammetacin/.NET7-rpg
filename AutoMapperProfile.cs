@@ -11,6 +11,7 @@ namespace _NET7_rpg
         {
             CreateMap<Character, GetCharacterResponseDTO>();
             CreateMap<AddCharacterRequestDTO, Character>();
+            CreateMap<UpdateCharacterRequestDTO, Character>();
         }
     }
 }

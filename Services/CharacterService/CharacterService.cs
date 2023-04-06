@@ -59,13 +59,17 @@ namespace Services.CharacterService
                 if(character == null) {
                     throw new Exception($"Character with Id '{updatedCharacter.Id}' not found.");
                 }
-                
-                character.Name = updatedCharacter.Name;
-                character.HitPoints = updatedCharacter.HitPoints;
-                character.Strength = updatedCharacter.Strength;
-                character.Defence = updatedCharacter.Defence;
-                character.Intelligence = updatedCharacter.Intelligence;
-                character.Class = updatedCharacter.Class;
+
+                // Using mapper to map object
+                // _mapper.Map<Character>(updatedCharacter);
+                _mapper.Map(updatedCharacter, character);
+
+                // character.Name = updatedCharacter.Name;
+                // character.HitPoints = updatedCharacter.HitPoints;
+                // character.Strength = updatedCharacter.Strength;
+                // character.Defence = updatedCharacter.Defence;
+                // character.Intelligence = updatedCharacter.Intelligence;
+                // character.Class = updatedCharacter.Class;
 
                 serviceResponse.Data = _mapper.Map<GetCharacterResponseDTO>(character);
             } 
